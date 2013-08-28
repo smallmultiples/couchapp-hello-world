@@ -81,7 +81,7 @@ You don't really need any special tools to develop a CouchApp, however there are
 * **couchapp** <https://npmjs.org/package/couchapp>  
 Node.js utilities for building CouchDB applications.
 
- * **kanso** <http://kan.so/>  
+* **kanso** <http://kan.so/>  
 Kanso can be described as the NPM for CouchApps, with tools for installing and publishing shared packages while managing dependencies. 
 
 
