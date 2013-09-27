@@ -132,6 +132,29 @@ And then add a .htaccess with these lines:
 	
 Now you can access your CouchApp from port 80 without messing around with CouchDB's default port!
 
+#### Alternatively
+
+Note: Be very carefull witth enabling proxy pass! It could potentially lead to DoS attacks.
+
+	<VirtualHost *:80>
+	   ServerAdmin webmaster@dummy-host.example.com
+	   DocumentRoot "/srv/www2/dummy"
+	   ServerName couchapp.small.mu
+	   AllowEncodedSlashes On
+	   ProxyRequests Off
+	   KeepAlive Off
+	   Header set Access-Control-Allow-Origin "*"
+	   <Proxy *>
+	      Order deny,allow
+	      Deny from all
+	      Allow from 127.0.0.1
+	   </Proxy>
+	   ProxyPass / http://127.0.0.1:5984/ nocanon
+	   ProxyPassReverse / http://127.0.0.1:5984/
+	   ErrorLog "logs/couchdb.localhost-error_log"
+	   CustomLog "logs/couchdb.localhost-access_log" common
+	</VirtualHost>
+
 ### Users
 To add a user to couchdb, add the a record to the _users databse
 
